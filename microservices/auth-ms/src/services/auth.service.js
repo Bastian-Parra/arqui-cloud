@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
-import { Paciente } from "./models/paciente.model.js";
-import { Profesional } from "./models/profesional.model.js";
-import { normalizePassword } from "./utils/normalizePassword.js";
+import { Paciente } from "../models/paciente.model.js";
+import { Profesional } from "../models/profesional.model.js";
+import { normalizePassword } from "../utils/normalizePassword.js";
 
 // Mock de contraseñas en memoria
 const passwordMap = new Map();
