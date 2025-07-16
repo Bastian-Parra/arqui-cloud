@@ -1,6 +1,6 @@
 // microservices/profesional-service/src/services/profesionalService.js
-const { getConnection } = require("../config/db");
-
+// LÍNEA CORRECTA
+const { getConnection } = require("../database/database");
 async function getAllProfesionales() {
   const connection = getConnection();
   const [rows] = await connection.execute("SELECT * FROM profesionales");
