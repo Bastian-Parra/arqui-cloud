@@ -2,7 +2,6 @@
 # Ignora todas las carpetas node_modules en cualquier subdirectorio
 node_modules/
 
-# Archivos de Entorno (MUY IMPORTANTE)
 # Ignora todos los archivos .env para no subir contraseñas ni secretos
 .env
 *.env

@@ -1,6 +1,5 @@
 // microservices/profesional-service/src/services/disponibilidadService.js
-const { getConnection } = require("../config/db");
-
+const { getConnection } = require("../database/database");
 async function getAllDisponibilidad() {
   const connection = getConnection();
   const [rows] = await connection.execute(

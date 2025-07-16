@@ -1,1 +1,0 @@
-// Aqui va la simulacion para Clave única
