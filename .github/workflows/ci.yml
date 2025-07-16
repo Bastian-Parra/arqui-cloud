@@ -5,11 +5,11 @@ name: CI Microservicios
 # Este workflow se ejecuta en cada push o PR hacia main
 on:
   push:
-    branches: [main]
+    branches: [main, angel]
     paths:
       - 'microservices/**'
   pull_request:
-    branches: [main]
+    branches: [main, angel]
 
 jobs:
   build:
