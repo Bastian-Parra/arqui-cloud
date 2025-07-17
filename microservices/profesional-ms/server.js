@@ -1,4 +1,5 @@
 require("dotenv").config();
+const logger = require("./src/utils/logger");
 const app = require("./src/app");
 const { connectToDatabase } = require("./src/database/database");
 
@@ -8,7 +9,7 @@ async function main() {
   await connectToDatabase();
 
   app.listen(port, () => {
-    console.log(
+    logger.info(
       `[Profesionales-MS] Servidor Express escuchando en http://localhost:${port}`
     );
   });

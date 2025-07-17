@@ -1,3 +1,4 @@
+import './src/utils/otel.cjs'; // Import OpenTelemetry setup
 import express from "express";
 import { logger } from "./src/utils/logger.js";
 import cors from 'cors'
