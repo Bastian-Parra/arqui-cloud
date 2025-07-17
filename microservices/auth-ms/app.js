@@ -1,12 +1,13 @@
-import './src/utils/otel.cjs'; // Import OpenTelemetry setup
 import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
 import { logger } from "./src/utils/logger.js";
 import cors from 'cors'
 import authRoutes from './src/routes/auth.routes.js'
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json());  
 
 // Rutas
 app.use('/auth', authRoutes);

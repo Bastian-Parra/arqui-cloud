@@ -3,7 +3,7 @@ const logger = require("./src/utils/logger");
 const app = require("./src/app");
 const { connectToDatabase } = require("./src/database/database");
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3002;
 
 async function main() {
   await connectToDatabase();
