@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
+import { logger } from "../utils/logger.js";
 import dotenv from "dotenv";
 
 dotenv.config();
-
 // conexion para pacientes
 export const sequelizePacientes = new Sequelize({
   dialect: "mysql",
@@ -41,9 +41,9 @@ export const testConnections = async () => {
   try {
     await sequelizePacientes.authenticate();
     await sequelizeProfesionales.authenticate();
-    console.log("Conexiones a BD verificadas");
+    logger.info("Conexiones a BD verificadas");
   } catch (error) {
-    console.error(" Error conexion a BD", error);
+    logger.error(" Error conexion a BD", error);
     throw error;
   }
 }

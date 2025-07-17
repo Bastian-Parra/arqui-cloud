@@ -1,3 +1,4 @@
+import { logger } from "../utils/logger.js";
 import { authenticate } from "../services/auth.service.js";
 import { generateToken } from "../utils/jwt.js";
 
@@ -23,7 +24,10 @@ export const login = async (req, res) => {
       user: usuario,
     });
   } catch (error) {
-    console.error("Error en el login", error);
+    logger.error("Error en el login", error);
+    logger.error(error.message);
+    logger.error(error.stack);
+  
     res.status(500).json({ error: "Error interno del servidor" });
   }
 };

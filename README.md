@@ -9,9 +9,9 @@ Servicio
 
 | Servicio           | Puerto | Descripción                          | Endpoints                     |
 |--------------------|--------|--------------------------------------|-------------------------------|
-| **auth-ms**        | 3000   | Autenticación (simula Clave Única)   | `POST /auth/login`            |
-| **turnos-ms**      | 4000   | Gestión de turnos médicos            | `POST /turnos`, `GET /turnos` |
-| **priorizacion-ms**| 5000   | Priorización de pacientes            | `POST /priorizar`             |
+| **auth-ms**        | 3000   | Autenticación (simula Clave Única)   | `POST /auth/login`, `GET /auth/verify`            |
+| **profesionales-ms**      | 4000   | Gestión de pacientes            | `POST /profesionales`, `GET /profesionales/:id`, `POST /profesionales`, `/disponibilidad`, `/disponibilidad/:id` |
+| **pacientes-ms**| 5000   | Gestión de profesionales            | `GET /pacientes` , `GET /historial`, `POST /pacientes`             |
 
 ## Instalación Local
 

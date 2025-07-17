@@ -1,3 +1,4 @@
+import { logger } from "../utils/logger.js";
 import bcrypt from "bcrypt";
 import { Paciente } from "../models/paciente.model.js";
 import { Profesional } from "../models/profesional.model.js";
@@ -72,7 +73,7 @@ const authenticate = async (rut, password) => {
 
     return null;
   } catch (error) {
-    console.log("Error en autenticacion:", error);
+    logger.error("Error en autenticacion:", error);
     throw error;
   }
 };
@@ -80,19 +81,19 @@ const authenticate = async (rut, password) => {
 (async () => {
   try {
     await initPasswordMock();
-    console.log("Servicio de autenticación listo");
+    logger.info("Servicio de autenticación listo");
     const testRut = "10.987.654-3"; // Lonee Diggle
     if (passwordMap.has(`profesional_${testRut}`)) {
-      console.log("\nPrueba automática:");
-      console.log(`RUT: ${testRut}`);
-      console.log(
+      logger.info("\nPrueba automática:");
+      logger.info(`RUT: ${testRut}`);
+      logger.info(
         `Contraseña: ${
           passwordMap.get(`profesional_${testRut}`).plain
         }`
       );
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     process.exit(1); // Salir si no puede inicializar
   }
 })();

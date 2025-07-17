@@ -1,6 +1,12 @@
 import express from "express";
+<<<<<<< HEAD
 import cors from 'cors';
 import authRoutes from './src/routes/auth.routes.js';
+=======
+import { logger } from "./src/utils/logger.js";
+import cors from 'cors'
+import authRoutes from './src/routes/auth.routes.js'
+>>>>>>> f2ef2b885b3076837deb9c04d54fa684fe06fa2c
 
 const app = express();
 
@@ -43,6 +49,7 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
+<<<<<<< HEAD
 const server = app.listen(PORT, () => {
   console.log(`Auth-MS running on port ${PORT}`);
 });
@@ -72,3 +79,8 @@ process.on('uncaughtException', (err) => {
 
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+=======
+app.listen(PORT, () => {
+  logger.info(`Auth-MS running on port ${PORT}`);
+});
+>>>>>>> f2ef2b885b3076837deb9c04d54fa684fe06fa2c

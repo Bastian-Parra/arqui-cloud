@@ -1,4 +1,5 @@
 // microservices/paciente-ms/src/controllers/pacienteController.js
+const { logger } = require("../utils/logger");
 const pacienteService = require("../services/pacienteService");
 
 async function getAllPacientes(req, res) {
@@ -6,7 +7,7 @@ async function getAllPacientes(req, res) {
     const pacientes = await pacienteService.getAllPacientes();
     res.json(pacientes);
   } catch (err) {
-    console.error("[Paciente-MS] Error al obtener pacientes:", err.message);
+    logger.error("[Paciente-MS] Error al obtener pacientes:", err.message);
     res
       .status(500)
       .json({ message: "Error interno del servidor al obtener pacientes." });
@@ -21,7 +22,7 @@ async function getPacienteById(req, res) {
     }
     res.json(paciente);
   } catch (err) {
-    console.error(
+    logger.error(
       "[Paciente-MS] Error al obtener paciente por ID:",
       err.message
     );
@@ -36,7 +37,7 @@ async function createPaciente(req, res) {
     const result = await pacienteService.createPaciente(req.body);
     res.status(201).json(result);
   } catch (err) {
-    console.error("[Paciente-MS] Error al crear paciente:", err.message);
+    logger.error("[Paciente-MS] Error al crear paciente:", err.message);
     res
       .status(err.statusCode || 500)
       .json({

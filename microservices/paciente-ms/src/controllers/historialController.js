@@ -1,4 +1,5 @@
 // microservices/paciente-ms/src/controllers/historialController.js
+const { logger } = require("../utils/logger");
 const historialService = require("../services/historialService");
 
 async function getAllHistorial(req, res) {
@@ -6,7 +7,7 @@ async function getAllHistorial(req, res) {
     const historial = await historialService.getAllHistorial();
     res.json(historial);
   } catch (err) {
-    console.error(
+    logger.error(
       "[Paciente-MS] Error al obtener historial médico:",
       err.message
     );
@@ -23,7 +24,7 @@ async function getHistorialByPacienteId(req, res) {
     );
     res.json(historial);
   } catch (err) {
-    console.error(
+    logger.error(
       "[Paciente-MS] Error al obtener historial médico por paciente:",
       err.message
     );
