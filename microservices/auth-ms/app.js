@@ -1,4 +1,5 @@
 import express from "express";
+import { logger } from "./src/utils/logger.js";
 import cors from 'cors'
 import authRoutes from './src/routes/auth.routes.js'
 
@@ -11,5 +12,5 @@ app.use('/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Auth-MS running on port ${PORT}`);
+  logger.info(`Auth-MS running on port ${PORT}`);
 });
