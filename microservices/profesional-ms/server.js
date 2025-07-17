@@ -1,4 +1,3 @@
-// microservices/paciente-ms/server.js
 require("dotenv").config();
 const app = require("./src/app");
 const { connectToDatabase } = require("./src/database/database");
