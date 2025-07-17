@@ -17,10 +17,16 @@ export default defineConfig([
       ...js.configs.recommended.rules,
       eqeqeq: "error",
       "no-unused-vars": "warn",
-      "no-console": "warn",
+      "no-console": "error",
       "no-var": "error",
       "prefer-const": "warn",
       "no-eval": "error"
+    }
+  },
+  {
+    files: ["src/utils/logger.js"],
+    rules: {
+      "no-console": "off"
     }
   }
 ]);
