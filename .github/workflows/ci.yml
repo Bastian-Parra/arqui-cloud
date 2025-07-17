@@ -38,4 +38,5 @@ jobs:
       - name: Buscar secretos con TruffleHog
         uses: trufflesecurity/trufflehog@main
         with:
-          scanArguments: "--only-verified filesystem microservices/${{ matrix.service }}"
+          path: microservices/${{ matrix.service }}
+          extra_args: --only-verified filesystem
