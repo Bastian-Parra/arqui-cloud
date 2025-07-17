@@ -18,7 +18,7 @@ jobs:
     # Repetimos el flujo para cada microservicio relevante
     strategy:
       matrix:
-        service: [paciente-ms, profesional-ms, turnos-ms]
+        service: [auth-ms, paciente-ms, profesional-ms, turnos-ms]
 
     steps:
       - name: Checkout código
