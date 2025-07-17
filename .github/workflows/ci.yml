@@ -35,5 +35,7 @@ jobs:
       - name: Analizar con ESLint
         run: cd microservices/${{ matrix.service }} && npx eslint src || true
 
-      - name: Buscar secretos con Gitleaks
-        uses: gitleaks/gitleaks-action@v2
+      - name: Buscar secretos con TruffleHog
+        uses: trufflesecurity/trufflehog@main
+        with:
+          scanArguments: "--only-verified filesystem ."
