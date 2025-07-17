@@ -9,7 +9,7 @@ Definir las estrategias, responsables y mecanismos necesarios para restaurar los
 El DRP cubre los siguientes componentes:
 
 - Microservicios
-- Base de Datos (`Locales con MySQL`)
+- Base de Datos (`Cloud SQL`)
 - API Gateway y balanceadores
 - Almacenamiento estatico y backups
 - Servicios de CI/CD en GitHub Actions
