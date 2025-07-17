@@ -33,7 +33,7 @@ jobs:
         run: cd microservices/${{ matrix.service }} && npm ci
 
       - name: Analizar con ESLint
-        run: cd microservices/${{ matrix.service }} && npx eslint src || true
+        run: cd microservices/${{ matrix.service }} && npx eslint src
 
       - name: Buscar secretos con Gitleaks
         uses: zricethezav/gitleaks-action@v1
