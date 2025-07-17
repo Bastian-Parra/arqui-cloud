@@ -3,7 +3,7 @@ require("dotenv").config();
 const app = require("./src/app");
 const { connectToDatabase } = require("./src/database/database");
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 4000;
 
 async function main() {
   await connectToDatabase();

@@ -10,7 +10,7 @@ async function getAllProfesionales() {
 async function getProfesionalById(id) {
   const connection = getConnection();
   const [rows] = await connection.execute(
-    "SELECT * FROM profesionales WHERE id_profesional = ?",
+    "SELECT * FROM profesionales WHERE id = ?",
     [id]
   );
   return rows[0];

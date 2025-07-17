@@ -1,0 +1,21 @@
+name: Despliegue
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Instalar dependencias
+        run: |
+          cd microservices/auth-ms && npm install
+          cd ../paciente-ms && npm install
+          cd ../profesional-ms && npm install
+      
+      - name: Test Básico
+        run: |
+          echo "Verificando estructura..."
+          [ -f microservices/auth-ms/app.js ] || exit 1
+          [ -f microservices/paciente-ms/server.js ] || exit 1

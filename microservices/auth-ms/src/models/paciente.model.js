@@ -4,7 +4,7 @@ import { sequelizePacientes } from "../config/database.js";
 export const Paciente = sequelizePacientes.define(
   "Paciente",
   {
-    id: {
+    id_paciente: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -22,14 +22,34 @@ export const Paciente = sequelizePacientes.define(
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    clave_unica: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
+    fecha_nacimiento: {
+      type: DataTypes.DATE,
+      allowNull: false
     },
-    prevision: {
+    direccion: {
+      type: DataTypes.STRING(),
+      allowNull: false
+    },
+    comuna: {
+      type: DataTypes.STRING(),
+      allowNull: false
+    },
+    region: {
+      type: DataTypes.STRING(),
+    },
+    email: {
+      type: DataTypes.STRING(),
+      allowNull: false
+    },
+    telefono: {
+      type: DataTypes.STRING(),
+      allowNull: false
+    },
+    prevision_salud: {
       type: DataTypes.ENUM("FONASA", "ISAPRE", "NINGUNA"),
       defaultValue: "FONASA",
     },
+
   },
   {
     tableName: "pacientes",

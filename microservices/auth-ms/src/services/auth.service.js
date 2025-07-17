@@ -25,7 +25,7 @@ const initPasswordMock = async () => {
   }
 
   const pacientes = await Paciente.findAll({
-    attributes: ["id", "rut", "nombre"],
+    attributes: ["id_paciente", "rut", "nombre"],
   });
 
   for (const pac of pacientes) {
@@ -64,7 +64,7 @@ const authenticate = async (rut, password) => {
       if (match) {
         const paciente = await Paciente.findOne({
           where: { rut },
-          attributes: ["id", "rut", "nombre", "apellido", "prevision"],
+          attributes: ["id_paciente", "rut", "nombre", "apellido", "prevision_salud"],
         });
         return { ...paciente.get(), tipo: "paciente" };
       }

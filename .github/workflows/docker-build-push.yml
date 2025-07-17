@@ -1,0 +1,25 @@
+name: Build Docker Images
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build auth-ms
+      run: |
+        cd microservices/auth-ms
+        docker build -t auth-ms .
+        
+    - name: Build paciente-ms
+      run: |
+        cd microservices/paciente-ms
+        docker build -t paciente-ms .
+        
+    - name: Build profesional-ms
+      run: |
+        cd microservices/profesional-ms
+        docker build -t profesional-ms .

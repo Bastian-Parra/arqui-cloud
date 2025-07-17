@@ -1,1 +1,0 @@
-// Aqui va como un mock de la base de datos, quizas con Sequelize para modelar los datos en forma local?

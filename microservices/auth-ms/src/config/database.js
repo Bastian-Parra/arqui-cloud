@@ -6,7 +6,7 @@ dotenv.config();
 // conexion para pacientes
 export const sequelizePacientes = new Sequelize({
   dialect: "mysql",
-  host: process.env.DB_HOST || "localhost",
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT || 3306,
   username: process.env.DB_AUTH_USER || "root",
   password: process.env.DB_AUTH_PASSWORD || "auth_password",
@@ -23,7 +23,7 @@ export const sequelizePacientes = new Sequelize({
 // conexion para profesionales
 export const sequelizeProfesionales = new Sequelize({
   dialect: "mysql",
-  host: process.env.DB_HOST || "localhost",
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT || 3306,
   username: process.env.DB_AUTH_USER || "root",
   password: process.env.DB_AUTH_PASSWORD || "auth_password",

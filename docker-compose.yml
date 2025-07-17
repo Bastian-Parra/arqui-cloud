@@ -1,1 +1,106 @@
-# Orquestacion de los contenedores
+version: '3.8'
+
+services:
+  # Servicio de Autenticación (sin DB) - INDENTACIÓN CORREGIDA
+  auth-service:
+    build: ./microservices/auth-ms
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+    volumes:
+      - ./microservices/auth-ms:/app
+      - /app/node_modules
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - backend-network
+
+  # Base de Datos para Pacientes (root)
+  pacientes-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 124020069kK!
+      MYSQL_DATABASE: db_pacientes
+    ports:
+      - "3306:3306"
+    volumes:
+      - pacientes_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p124020069kK!"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    networks:
+      - backend-network
+
+  # Base de Datos para Profesionales (root)
+  profesionales-db:
+    image: mysql:8.0.42
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: "124020069kK!"
+      MYSQL_DATABASE: db_profesionales
+      MYSQL_INITDB_SKIP_TZINFO: 1
+    ports:
+      - "3307:3306"
+    volumes:
+      - profesionales_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p124020069kK!"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+    networks:
+      - backend-network
+
+  # Servicio de Pacientes
+  paciente-service:
+    build: ./microservices/paciente-ms
+    ports:
+      - "4000:4000"
+    environment:
+      DB_HOST: pacientes-db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: 124020069kK!
+    depends_on:
+      pacientes-db:
+        condition: service_healthy
+    volumes:
+      - ./microservices/paciente-ms:/app
+      - /app/node_modules
+    networks:
+      - backend-network
+
+  # Servicio de Profesionales
+  profesional-service:
+    build: ./microservices/profesional-ms
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: profesionales-db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: 124020069kK!
+    depends_on:
+      profesionales-db:
+        condition: service_healthy
+    volumes:
+      - ./microservices/profesional-ms:/app
+      - /app/node_modules
+    networks:
+      - backend-network
+
+volumes:
+  pacientes_data:
+  profesionales_data:
+
+networks:
+  backend-network:
+    driver: bridge
