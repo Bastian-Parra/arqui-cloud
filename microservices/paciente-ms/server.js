@@ -1,4 +1,5 @@
 // microservices/paciente-ms/server.js
+const logger = require("./src/utils/logger");
 require("dotenv").config();
 const app = require("./src/app");
 const { connectToDatabase } = require("./src/database/database");
@@ -9,10 +10,11 @@ async function main() {
   await connectToDatabase();
 
   app.listen(port, () => {
-    console.log(
+    logger.info(
       `[Paciente-MS] Servidor Express escuchando en http://localhost:${port}`
     );
   });
 }
+
 
 main();

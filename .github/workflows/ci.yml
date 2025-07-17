@@ -1,1 +1,41 @@
 # Aqui va la configuracion del github actions
+
+name: CI Microservicios
+
+# Este workflow se ejecuta en cada push o PR hacia main
+on:
+  push:
+    branches: [main, angel]
+    paths:
+      - 'microservices/**'
+  pull_request:
+    branches: [main, angel]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Repetimos el flujo para cada microservicio relevante
+    strategy:
+      matrix:
+        service: [auth-ms, paciente-ms, profesional-ms, turnos-ms]
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar dependencias
+        run: cd microservices/${{ matrix.service }} && npm ci
+
+      - name: Analizar con ESLint
+        run: cd microservices/${{ matrix.service }} && npx eslint src
+
+      - name: Buscar secretos con Gitleaks
+        uses: zricethezav/gitleaks-action@v1
+        with:
+          args: --path=microservices/${{ matrix.service }} --verbose
