@@ -1,7 +1,7 @@
 // microservices/profesional-service/src/controllers/disponibilidadController.js
 const disponibilidadService = require("../services/disponibilidadService");
 
-async function getAllDisponibilidad(req, res) {
+async function getAllDisponibilidad(req, res) { // Obtiene toda la disponibilidad
   try {
     const disponibilidad = await disponibilidadService.getAllDisponibilidad();
     res.json(disponibilidad);
