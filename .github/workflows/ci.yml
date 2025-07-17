@@ -39,4 +39,4 @@ jobs:
         uses: trufflesecurity/trufflehog@main
         with:
           path: microservices/${{ matrix.service }}
-          extra_args: --only-verified filesystem
+          extra_args: filesystem --only-verified
